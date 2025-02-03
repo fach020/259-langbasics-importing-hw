@@ -17,7 +17,8 @@
 
 # Load the readr package
 
-# ANSWER
+install.packages("readr")
+library(readr)
 
 
 ### QUESTION 2 ----- 
@@ -42,10 +43,8 @@
 
 # A list of column names are provided to use:
 
-col_names  <-  c("trial_num","speed_actual","speed_response","correct")
-
-# ANSWER
-
+col_names <-  c("trial_num","speed_actual","speed_response","correct")
+ds1 <- read_tsv("data_A/6191_1.txt", skip = 7, col_names = col_names)
 
 
 ### QUESTION 3 ----- 
@@ -54,22 +53,21 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # Create a new column in ds1 that takes trial_num and adds 100
 # Then write the new data to a CSV file in the "data_cleaned" folder
 
-# ANSWER
-
+ds1$trial_num_100 <- ds1$trial_num + 100
+write_csv(ds1, "data_cleaned/6191_1_cleaned.csv") # I can't seem to be able to do this one!
 
 ### QUESTION 4 ----- 
 
 # Use list.files() to get a list of the full file names of everything in "data_A"
 # Store it to a variable
 
-# ANSWER
-
+frames <- list.files("data_A", full.names = T)
 
 ### QUESTION 5 ----- 
 
 # Read all of the files in data_A into a single tibble called ds
 
-# ANSWER
+ds <- read_tsv(frames, skip = 7, col_names = col_names)
 
 
 ### QUESTION 6 -----
@@ -101,5 +99,8 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # Install the readxl package, load it, and use it to read in the .xlsx data in data_B
 # There are two sheets of data -- import each one into a new tibble
 
-# ANSWER
+install.packages("readxl")
+library(readxl)
+p_info <- read_xlsx("data_B/participant_info.xlsx")
+p_info_cleaned <-read_xlsx("data_B/participant_info.xlsx", col_names = c("participant", "test_date"), sheet = 2)
 
