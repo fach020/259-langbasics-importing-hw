@@ -1,5 +1,5 @@
 #PSYC 259 Homework 1 - Data Import
-#For full credit, provide answers for at least 6/8 questions
+#For full credit, provide answers for at least 6/8 questions (7/8)
 
 #List names of students collaborating with (no more than 2): 
 
@@ -56,6 +56,8 @@ ds1 <- read_tsv("data_A/6191_1.txt", skip = 7, col_names = col_names)
 ds1$trial_num_100 <- ds1$trial_num + 100
 write_csv(ds1, "data_cleaned/6191_1_cleaned.csv") # I can't seem to be able to do this one!
 
+#MComment: You need to make a data_cleaned folder, either manually on your computer or in R with dir.create()
+
 ### QUESTION 4 ----- 
 
 # Use list.files() to get a list of the full file names of everything in "data_A"
@@ -82,6 +84,9 @@ ds <- read_tsv(frames, skip = 7, col_names = col_names)
 
 # ANSWER
 
+#Key:
+ds <- read_tsv(fnames, skip = 7, col_names = col_names, col_types = "iccl")
+ds$trial_num_100 <- ds$trial_num + 100
 
 ### QUESTION 7 -----
 
@@ -92,6 +97,8 @@ ds <- read_tsv(frames, skip = 7, col_names = col_names)
 
 # ANSWER
 
+#Key:
+ds <- read_tsv(fnames, skip = 7, col_names = col_names, col_types = "iccl", id = "filename")
 
 ### QUESTION 8 -----
 
@@ -104,3 +111,4 @@ library(readxl)
 p_info <- read_xlsx("data_B/participant_info.xlsx")
 p_info_cleaned <-read_xlsx("data_B/participant_info.xlsx", col_names = c("participant", "test_date"), sheet = 2)
 
+#MComment: Code looks good, just note the sheets were 2 different data sets (sheet 1 was participant info, sheet 2 was run date)
